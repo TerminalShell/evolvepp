@@ -1,0 +1,24 @@
+afro,Afro,models/gmod_tower/afro.mdl,16
+barrel,Barrel Head,models/props_c17/oildrum001_explosive.mdl,44,20
+barrel_warning,Traffic Barrel Head,models/props/cs_assault/BarrelWarning.mdl,42,15
+baseballcap,Baseball Cap,models/props/cs_office/Snowman_hat.mdl,10
+bird,Bird,models/player/items/medic/archimedes.mdl,12,3
+bucket,Bucket,models/props_junk/MetalBucket01a.mdl,18
+catears,Cat Ears,models/gmod_tower/catears.mdl,8,2
+cone,Cone,models/props_junk/TrafficCone001a.mdl,26,-5
+cowboy,Cowboy Hat,models/player/items/engineer/engineer_cowboy_hat.mdl,12,2
+fedora,Fedora,models/gmod_tower/fedorahat.mdl,10,-2
+foxears,Fox Ears,models/naitosears/foxears.mdl,8,2
+ghost,Ghost,models/props_halloween/smlprop_ghost.mdl,11,-2
+hatchet,Hatchet,models/props/cs_militia/axe.mdl,22,-1
+headcrab,Headcrab,models/gmod_tower/headcrabhat.mdl,18,-7
+pot,Cooking Pot,models/props_interiors/pot02a.mdl,15
+pumpkin,Jack O Lantern,models/props_halloween/jackolantern_01.mdl,47,18
+roller,Roller Mine,models/Roller.mdl,20,-2
+skull,Flaming Skull,models/Gibs/HGIBS.mdl,7,-1
+snowman,Snowman Head,models/props/cs_office/snowman_face.mdl,12,-1
+tophat,Tophat,models/gmod_tower/tophat.mdl,15,4
+turtle,Turtle,models/props/de_tides/Vending_turtle.mdl,12,1
+tv,TV,models/props_spytech/tv001.mdl,38,15
+watermelon,Melon Head,models/props_junk/watermelon01.mdl,15,-2
+wolfears,Wolf Ears,models/naitosears/woxears.mdl,8,2

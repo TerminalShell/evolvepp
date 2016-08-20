@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"name"		"Evolve++"
+	"version"		"16.8.20"
+	"up_date"		"08/20/16"
+	"author_name"	"Mwr247"
+	"author_url"	"http://mwr247.com/"
+	"info"		"An easy to use extensible server administration mod. Based on Evolve from Overv, ported by Northdegree."
+}

@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "trails/Flag_Germany"
+	
+	"$additive" 0
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+}
