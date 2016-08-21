@@ -1,0 +1,11 @@
+{
+	"title"		:	"Evolve++",
+	"type"		:	"ServerContent",
+	"tags"		:	[ ],
+	"ignore"	:
+	[
+		"*.md",
+		".git*",
+		".git"
+	]
+}

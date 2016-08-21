@@ -7,8 +7,6 @@ MsgN( "\n=============================================================" )
 MsgN( " "..evolve.title.." version "..evolve.version.." succesfully initialized serverside." )
 MsgN( "=============================================================\n" )
 
-if evolve.useDataSync and file.Exists( "datasync_config.ev.lua", "LUA") then include( "datasync_config.ev.lua" ) end
-
 // Load plugins
 hook.Add( "Initialize", "EvolveInitialize", function()
 	evolve:LoadPlugins()

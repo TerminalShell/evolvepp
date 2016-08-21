@@ -6,7 +6,8 @@ function ENT:Initialize()
 	self:DrawShadow(false)
 	self:SetRenderBounds(Vector(-40, -40, -18), Vector(40, 40, 90))
 
-	self.Emitter = ParticleEmitter(self:GetPos())
+	self.Emitter = CLuaEmitter()
+	self.Emitter:SetPos(self:GetPos())
 	self.Emitter:SetNearClip(40, 50)
 	self.NextEmit = 0
 end
