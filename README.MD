@@ -1,7 +1,7 @@
 # ($>) Terminal Shell - Evolve++
 
-# Description
-Evolve++ is an easy to use extensible server administration mod for Garry's Mod. Based on Evolve from Overv, ported which was ported by Northdegree to Garry's Mod 13. It's primary feature is it's plugin system, which are easy to create and dynamically loadable
+## Description
+Evolve++ is an easy to use extensible server administration mod for Garry's Mod. Based on Evolve from Overv, which was ported by Northdegree to Garry's Mod 13. It's primary feature is it's plugin system, which are easy to create and dynamically loadable
 
 ## Installation
 Place the `/evolvepp/` directory in your `/garrysmod/addons/` folder, and check `/evolvepp/lua/config.ev.lua` for anything you might want to change.
