@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "trails/QBox"
+	
+	"$additive" 0
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+}

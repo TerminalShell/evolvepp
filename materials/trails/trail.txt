@@ -1,0 +1,37 @@
+applejack,Applejack
+flag_australia,Flag - Austrailia
+flag_russia,Flag - Russia
+forward_arrows,Arrows
+rainbow,Rainbow
+terminalshell,Terminal Shell
+dots,Dots
+flag_italy,Flag - Italy
+flag_uk,Flag - United Kingdom
+presents,Presents
+skullsplat,Skulls
+blacklaser,Black Laser
+flag_canada,Flag - Canada
+flag_scotland,Flag - Scotland
+lol,LOL
+rarity,Rarity
+twilightsparkle,Twilight Sparkle
+earth,Earth
+flag_netherlands,Flag - Netherlands
+flag_usa,Flag - USA
+qbox,Question Box
+speed,Speed
+checkerboard,Checkerboard
+flag_germany,Flag - Germany
+flag_southkorea,Flag - South Korea
+penguin,Penguin
+road,Road
+endlessmap,Map
+flag_poland,Flag - Poland
+fluttershy,Fluttershy
+rainbowdash,Rainbow Dash
+stars,Stars
+darksmoke,Dark Smoke
+flag_ireland,Flag - Ireland
+flag_spain,Flag - Spain
+pinkiepie,Pinkie Pie
+skullcross,Cross Bones
