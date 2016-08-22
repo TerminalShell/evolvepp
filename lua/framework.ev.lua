@@ -163,9 +163,10 @@ if SERVER then -- Create our folder structure
 		end
 	end
 end
-	
+
 -- Save files to the data folder, adding ".pck" to the end of the name will compress it ([string] name of file, [vararg] data to save)
 function evolve:SaveFile( name, data )
+	if CLIENT then return end
 	local filename = self.folderMain..name..self.fileExt
 	local filedata = data
 	if ( type(filedata) == "table" ) then filedata = util.TableToJSON( data ) end
@@ -179,11 +180,13 @@ end
 
 -- Alias for SaveFile, points at data files specifically
 function evolve:SaveData( name, data )
+	if CLIENT then return end
 	return self:SaveFile( self.folder.data .. name, data )
 end
 
 -- Load files from the data folder, adding ".pck" to the end of the name will decompress it ([string] name of file) Returns [table] if JSON or [string]
 function evolve:LoadFile( name )
+	if CLIENT then return end
 	local filename = self.folderMain..name..self.fileExt
 	local pack = false or string.EndsWith( name, self.filePackExt )
 	if ( !file.Exists( filename, "DATA" ) ) then return {} end
@@ -199,11 +202,13 @@ end
 
 -- Alias for LoadFile, points at data files specifically
 function evolve:LoadData( name )
+	if CLIENT then return end
 	return self:LoadFile( self.folder.data .. name )
 end
 
 -- Append to files in the data folder ([string] name of file, [string] data to save)
 function evolve:AppendFile( name, data )
+	if CLIENT then return end
 	local filename = self.folderMain..name..self.fileExt
 	local filedata = tostring(data)
 	file.Append( filename, filedata )
@@ -212,6 +217,7 @@ end
 
 -- Alias for AppendFile, points at data files specifically
 function evolve:AppendData( name, data )
+	if CLIENT then return end
 	return self:AppendFile( self.folder.data .. name, data )
 end
 
@@ -291,10 +297,10 @@ function evolve:CompareVersion( cur, new )
 	if ( !new and !cur ) then return 0 elseif ( !new ) then return -1 elseif ( !cur ) then return 1 end
 	cur = string.Explode('.',cur)
 	new = string.Explode('.',new)
-	
+
 	local ncur = table.Count(cur)
 	local nnew = table.Count(new)
-	
+
 	if ( ncur != nnew ) then
 		for i=1,ncur do
 			if ( tonumber(cur[ncur+1-i]) == 0 ) then table.remove( cur, ncur+1-i ) else break end
@@ -305,7 +311,7 @@ function evolve:CompareVersion( cur, new )
 		end
 		nnew = table.Count(new)
 	end
-	
+
 	for i=1,math.max(ncur,nnew) do
 		if ( !cur[i] ) then
 			return 1
@@ -353,7 +359,7 @@ function evolve:LoadPlugins()
 	local prefix
 	local dirs = { self.folderMain .. self.folder.plugins }
 	local fileCheck
-	
+
 	fileCheck = file.Find( dirs[1] .. GAMEMODE_NAME .. "/*", "DATA" )
 	if ( #fileCheck ) then
 		table.insert( dirs, dirs[1] .. GAMEMODE_NAME .. "/" )
@@ -362,7 +368,7 @@ function evolve:LoadPlugins()
 	if ( #fileCheck and GAMEMODE_NAME != "sandbox_derived" and GAMEMODE.IsSandboxDerived ) then
 		table.insert( dirs, dirs[1] .. "sandbox_derived/" )
 	end
-	
+
 	for _, dir in pairs( dirs ) do
 		plugins = file.Find( dir .. "*.lua" .. self.fileExt, "DATA" )
 		for k, plugin in pairs( plugins ) do
@@ -382,7 +388,7 @@ function evolve:RegisterPlugin( plugin )
 	if ( !plugin or type(plugin) != "table" ) then return end
 	if ( plugin.File ) then pluginFile = plugin.File
 	elseif ( !pluginFile ) then return end
-	
+
 	local prefix = string.Explode( "/", pluginFile )
 	prefix = prefix[#prefix]
 	prefix = string.Left( prefix, string.find( prefix, "_" ) - 1 )
@@ -420,21 +426,21 @@ function evolve:RegisterPlugin( plugin )
 			end
 		end
 	end
-	
+
 	if ( plugin.Privileges and !istable(plugin.Privileges) ) then
 		plugin.Privileges = {plugin.Privileges}
 	end
 	if ( plugin.Commands and !istable(plugin.Commands) ) then
 		plugin.Commands = {plugin.Commands}
 	end
-	
+
 	self.plugins[plugin.Title] = plugin
 	plugin.File = pluginFile
 	if ( isfunction( plugin.Initialize ) ) then
 		plugin.EV_PluginsLoaded = plugin.Initialize
 		plugin.Initialize = nil
 	end
-	
+
 	if ( plugin.Privileges and SERVER ) then table.Add( self.privileges, plugin.Privileges ) table.sort( self.privileges ) end
 end
 
@@ -536,7 +542,7 @@ end
 
 if ( SERVER ) then
 	util.AddNetworkString( "EV_PluginFile" )
-	
+
 	function evolve:ReloadPlugin( ply, com, args)
 			if ( !ply:IsValid() and args[1] ) then
 			local found
@@ -583,7 +589,7 @@ if ( SERVER ) then
 			end
 		end
 	end
-	
+
 	concommand.Add( "EV_PluginFile", function( ply, com, args )
 		evolve:ReloadPlugin( ply, com, args )
 	end )
@@ -1322,7 +1328,7 @@ if SERVER then
 				SendUserMessage( "EV_BanEntry", ply, k, v.nick, v.reason, self:GetProperty( v.admin, "Nick" ), time )
 			end
 		end
-		
+
 	end
 
 	function evolve:Ban( steamid, length, reason, adminsid )
@@ -1344,11 +1350,11 @@ if SERVER then
 			self.bans[steamid].length = tostring(math.max( 0, length ))
 			self.bans[steamid].banend = tostring(self:Time()+length)
 			self.bans[steamid].admin = adminsid
-			
+
 			self:SaveBans()
 		end
-		
-		
+
+
 		local pl
 		if ( steamid != 0 ) then pl = self:GetBySteamID( steamid ) end
 
@@ -1377,7 +1383,7 @@ if SERVER then
 			end
 			self:SaveBans()
 		end
-		
+
 		if steamid!=nil and self:GetProperty( steamid, "IP" )!=nil and self:GetProperty( steamid, "IP" )!="N/A" then
 			game.ConsoleCommand( "removeip \"" .. ( self:GetProperty( steamid, "IP" ) or "" ) .. "\"\n" )
 		end
@@ -1395,7 +1401,7 @@ if SERVER then
 				end
 			end
 		end
-		
+
 		if ( banEnd and banEnd > 0 and self:Time() > banEnd ) then
 			self:UnBan( steamid )
 			return false
@@ -1464,7 +1470,7 @@ end
 
 function evolve:Log( str )
 	if CLIENT then return end
-	self:AppendFile( self.folder.logs .. self:FileDate() .. "_log", "[" .. self:Date("%Y-%m-%d %T %Z") .. "] " .. str .. "\n" )
+	self:AppendFile( self.folder.logs .. self:FileDate() .. "_log", "[" .. self:Date("%Y-%m-%d %H:%M:%S %Z") .. "] " .. str .. "\n" )
 end
 
 function evolve:PlayerLogStr( ply )

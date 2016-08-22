@@ -1,5 +1,6 @@
 include("shared.lua")
 ENT.Scale = Vector(2.2, 2.2, 2.2)
+ENT.Emitter = nil
 
 
 function ENT:Initialize()
