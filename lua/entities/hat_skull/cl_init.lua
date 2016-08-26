@@ -1,23 +1,11 @@
 include("shared.lua")
 ENT.Scale = Vector(2.2, 2.2, 2.2)
-ENT.Emitter = nil
-
 
 function ENT:Initialize()
 	self:DrawShadow(false)
 	self:SetRenderBounds(Vector(-40, -40, -18), Vector(40, 40, 90))
 
-	self.Emitter = ParticleEmitter(self:GetPos())
-	self.Emitter:SetNearClip(40, 50)
 	self.NextEmit = 0
-end
-
-function ENT:OnRemove()
-	self.Emitter:Finish()
-end
-
-function ENT:Think()
-	self.Emitter:SetPos(self:GetPos())
 end
 
 function ENT:Draw()
@@ -48,7 +36,9 @@ function ENT:Draw()
 
 			if 200 < col.a and self.NextEmit < CurTime() and LocalPlayer():IsValid() then
 				self.NextEmit = CurTime() + 0.1
-				local particle = self.Emitter:Add("effects/fire_cloud1", pos + LocalPlayer():GetAimVector() * -2)
+				local emitter = ParticleEmitter(self:GetPos())
+				emitter:SetNearClip(40, 50)
+				local particle = emitter:Add("effects/fire_cloud1", pos + LocalPlayer():GetAimVector() * -2)
 				particle:SetVelocity(owner:GetVelocity())
 				particle:SetDieTime(math.Rand(0.8, 1))
 				particle:SetStartAlpha(255)
@@ -59,6 +49,7 @@ function ENT:Draw()
 				particle:SetGravity(Vector(0,0,125))
 				particle:SetCollide(true)
 				particle:SetAirResistance(12)
+        emitter:Finish()
 			end
 			return
 		end
