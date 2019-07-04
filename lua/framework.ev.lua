@@ -13,7 +13,7 @@ evolve.chatPrefix = evolve.chatPrefix or { "!", "/" }
 evolve.chatPrefixSilent = evolve.chatPrefixSilent or { "@" }
 evolve.prefixLog = "[EV++]" -- Log/console output prefix
 evolve.timeOffset = evolve.timeOffset or 0
-evolve.version = "19.7.3" -- Version
+evolve.version = "19.7.4" -- Version
 
 -- Initialize main tables
 evolve.bans = {}
